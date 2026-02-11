@@ -16,7 +16,7 @@
             align-items: center; 
             min-height: 100vh; 
             overflow: hidden;
-            touch-action: manipulation; /* Biar enak di HP */
+            touch-action: manipulation;
         }
         
         #run-btn {
@@ -32,25 +32,29 @@
             transition: 0.1s ease-out;
         }
 
-        #hint { display: none; color: #888; font-size: 0.8rem; position: absolute; top: 60%; text-align: center; width: 100%; padding: 0 20px; box-sizing: border-box; }
+        #hint { display: none; color: #888; font-size: 0.7rem; position: absolute; top: 15%; text-align: center; width: 100%; padding: 0 20px; box-sizing: border-box; }
 
+        /* Hidden Gem - Dibuat super kecil dan hampir transparan */
         #hidden-gem {
             display: none;
             position: absolute;
-            bottom: 30px;
-            right: 30px;
+            bottom: 15px;
+            left: 10px;
             cursor: pointer;
-            font-size: 1.5rem;
-            opacity: 0.3; 
-            transition: 0.5s;
+            font-size: 0.7rem; /* Kecil banget! */
+            opacity: 0.2; 
+            transition: 0.3s;
+            z-index: 50;
         }
 
         #content { display: none; width: 85%; max-width: 350px; margin: 20px auto; text-align: center; }
         .card { background: white; padding: 15px 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 12px; border: 1px solid #ffe5ec; }
         h3 { color: var(--text-dark); font-size: 0.95rem; margin-bottom: 10px; }
-        ul { list-style: none; padding: 0; text-align: left; display: inline-block; margin: 0; }
-        li { margin: 5px 0; color: #666; font-size: 0.85rem; padding-left: 15px; position: relative; }
-        li::before { content: '✨'; position: absolute; left: 0; font-size: 0.7rem; }
+        
+        /* List tanpa emot */
+        ul { list-style: none; padding: 0; text-align: center; margin: 0; }
+        li { margin: 5px 0; color: #666; font-size: 0.85rem; }
+
         p { font-size: 0.85rem; color: #555; line-height: 1.4; }
         
         .btn-path { 
@@ -65,9 +69,8 @@
             font-weight: 600; 
             font-size: 0.8rem;
         }
-        .btn-path span { display: block; font-size: 0.65rem; font-weight: 300; color: #888; margin-top: 2px; }
+        .btn-path span { display: block; font-size: 0.6rem; font-weight: 300; color: #888; margin-top: 2px; }
         .btn-path:hover { background: var(--pink-bright); color: white; }
-        .btn-path:hover span { color: #fff5f7; }
 
         .valentine-card { border: 1.5px dashed var(--pink-bright); background: #fffafa; }
         .fade-in { animation: fadeIn 0.8s forwards; }
@@ -77,8 +80,8 @@
 <body>
 
     <button id="run-btn" onmouseover="runAway()" onclick="runAway()">ENTER</button>
-    <div id="hint">Nyerah ya? Coba cari 💎 yang sembunyi!</div>
-    <div id="hidden-gem" onclick="initGame()">💎</div>
+    <div id="hint">Nyerah? Cari 💎 kecil di layar!</div>
+    <div id="hidden-gem" onclick="showContent()">💎</div>
 
     <div id="content">
         <div class="card fade-in">
@@ -97,7 +100,7 @@
             <p>I enjoy talking to you and honestly I want to know you more and get closer in real life too.</p>
             <p style="font-weight: 600; color: var(--pink-bright); font-size: 0.8rem; margin-top: 15px;">CHOOSE YOUR STORY PATH:</p>
             
-            <a href="https://api.whatsapp.com/send?phone=6285947341684&text=I'll%20take%20the%20Slow%20Connection%20Mode!%20No%20rush,%20let's%20just%20keep%20talking%20and%20get%20to%20know%20each%20other%20more." class="btn-path">
+            <a href="https://api.whatsapp.com/send?phone=6285947341684&text=I'll%20take%20the%20Slow%20Connection%20Mode!%20No%20rush,%20let's%20just%20keep%20talking." class="btn-path">
                 SLOW CONNECTION MODE
                 <span>(no rush, just getting to know each other more)</span>
             </a>
@@ -122,13 +125,22 @@
 
     <script>
         let count = 0;
+        let songStarted = false;
         const btn = document.getElementById('run-btn');
         const gem = document.getElementById('hidden-gem');
         const hint = document.getElementById('hint');
+        const song = document.getElementById('mySong');
 
         function runAway() {
+            // Lagu mulai pas sentuhan pertama
+            if (!songStarted) {
+                song.currentTime = 1.5;
+                song.play();
+                song.volume = 0.5;
+                songStarted = true;
+            }
+
             count++;
-            // Hitung area aman agar tombol tidak keluar layar
             const maxX = window.innerWidth - btn.offsetWidth - 20;
             const maxY = window.innerHeight - btn.offsetHeight - 20;
             
@@ -138,18 +150,14 @@
             btn.style.left = randomX + 'px';
             btn.style.top = randomY + 'px';
 
-            if (count >= 5) {
+            // Muncul diamond setelah 10x
+            if (count >= 10) {
                 hint.style.display = 'block';
                 gem.style.display = 'block';
             }
         }
 
-        function initGame() {
-            const song = document.getElementById('mySong');
-            song.currentTime = 1.5;
-            song.play();
-            song.volume = 0.5;
-
+        function showContent() {
             btn.style.display = 'none';
             hint.style.display = 'none';
             gem.style.display = 'none';
