@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Veby</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-soft: #fff5f7;
+            --pink-bright: #ff4d6d;
+            --pink-hover: #ff758f;
+            --text-dark: #4a4a4a;
+        }
+
+        body {
+            background: var(--pink-soft);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-image: radial-gradient(#ffccd5 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 2px solid #ffccd5;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--pink-bright);
+            font-size: 28px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        p { color: var(--text-dark); line-height: 1.6; font-size: 15px; }
+
+        .stat-box {
+            background: #fffafa;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 15px;
+            border: 1px dashed #ff8fa3;
+            font-weight: 600;
+            color: #555;
+            transition: 0.3s;
+        }
+
+        /* Unique Hover Effect for Superhero */
+        .hero-box { position: relative; cursor: help; }
+        .hero-box:hover::after {
+            content: "Even superheroes need a break sometimes, it's okay to not be okay. ✨";
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            width: 220px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        button {
+            background: var(--pink-bright);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
+        }
+
+        button:hover {
+            background: var(--pink-hover);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.4);
+        }
+
+        .lyrics-bar {
+            position: fixed;
+            bottom: 40px;
+            color: var(--pink-bright);
+            font-style: italic;
+            font-weight: 300;
+            opacity: 0.8;
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        .fade-in { animation: fadeIn 0.8s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .option-card {
+            background: #fff;
+            border: 2px solid #ffccd5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .option-card:hover { background: #fff0f3; border-color: var(--pink-bright); }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="content">
+        <h1 class="fade-in">PLAYER DETECTED.</h1>
+        <p class="fade-in">loading interaction history...</p>
+        <button class="fade-in" onclick="initGame()">ENTER</button>
+    </div>
+
+    <div id="lyrics" class="lyrics-bar"></div>
+
+    <audio id="mySong" src="Bruno Mars - Treasure Official Music Video.mp3"></audio>
+
+    <script>
+        const song = document.getElementById('mySong');
+        const content = document.getElementById('content');
+        const lyrics = document.getElementById('lyrics');
+
+        function initGame() {
+            song.play();
+            song.volume = 0.5; // Suara nyaman di telinga
+            
+            content.classList.add('fade-in');
+            content.innerHTML = `
+                <h1 style="font-size: 20px;">what i learned about you:</h1>
+                <div class="stat-box">🍪 Cookie Master (Impressive!)</div>
+                <div class="stat-box">✨ Pretty & Positive Energy</div>
+                <div class="stat-box hero-box">🦸‍♀️ Superhero Vibes</div>
+                <p style="margin-top: 20px; font-weight: 600;">choose your story path:</p>
+                
+                <div class="option-card" onclick="finalPage('Slow Connection')">
+                    <strong>SLOW CONNECTION MODE</strong><br>
+                    <small>No rush, let's just talk more.</small>
+                </div>
+                
+                <div class="option-card" onclick="finalPage('Vibes')">
+                    <strong>LET'S SEE WHERE THIS GOES</strong><br>
+                    <small>No script, just vibes.</small>
+                </div>
+            `;
+
+            // Lirik sync sederhana
+            setTimeout(() => { lyrics.innerText = "Gimme your attention, baby..."; }, 1000);
+            setTimeout(() => { lyrics.innerText = "Treasure, that is what you are..."; }, 5000);
+            setTimeout(() => { lyrics.innerText = "Honey, you're my golden star!"; }, 9000);
+        }
+
+        function finalPage(choice) {
+            content.innerHTML = `
+                <h1>Happy Valentine! ❤️</h1>
+                <p>No big confessions today, just a reminder that talking to you has been unexpectedly fun.</p>
+                <p>Path chosen: <strong>${choice}</strong></p>
+                <button onclick="sendWA()">Send me a message</button>
+            `;
+        }
+
+        function sendWA() {
+            const message = encodeURIComponent("Haii! Gue udah liat websitenya... Lucu banget! WKWK");
+            window.open(`https://wa.me/6285947341684?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
