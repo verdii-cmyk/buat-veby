@@ -10,53 +10,28 @@
         body { 
             background: var(--pink-soft); 
             font-family: 'Poppins', sans-serif; 
-            margin: 0; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            overflow: hidden;
-            touch-action: none; /* Biar HP nggak scroll pas ngejar tombol */
+            margin: 0; display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh; overflow: hidden; touch-action: none;
         }
         
         #run-btn {
-            position: absolute;
-            background: var(--pink-bright);
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            z-index: 100;
-            transition: 0.1s ease-out;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+            position: absolute; background: var(--pink-bright); color: white; border: none;
+            padding: 12px 35px; border-radius: 50px; font-weight: 600; cursor: pointer;
+            z-index: 100; transition: 0.1s ease-out; left: 50%; top: 50%; transform: translate(-50%, -50%);
         }
 
         #hint { display: none; color: #888; font-size: 0.7rem; position: absolute; top: 15%; text-align: center; width: 100%; padding: 0 20px; box-sizing: border-box; }
 
         #hidden-gem {
-            display: none;
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            cursor: pointer;
-            font-size: 0.6rem; /* Lebih kecil lagi */
-            opacity: 0.15; /* Hampir ilang */
-            z-index: 50;
-            padding: 10px;
+            display: none; position: absolute; bottom: 15px; left: 15px;
+            cursor: pointer; font-size: 0.6rem; opacity: 0.15; z-index: 50; padding: 15px;
         }
 
         #content { display: none; width: 85%; max-width: 350px; margin: 20px auto; text-align: center; }
         .card { background: white; padding: 15px 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 12px; border: 1px solid #ffe5ec; }
         h3 { color: var(--text-dark); font-size: 0.95rem; margin-bottom: 10px; }
-        
-        /* List bersih tanpa bullet/emot */
         ul { list-style: none; padding: 0; text-align: center; margin: 0; }
-        li { margin: 5px 0; color: #666; font-size: 0.85rem; padding: 0; }
-
+        li { margin: 5px 0; color: #666; font-size: 0.85rem; }
         p { font-size: 0.85rem; color: #555; line-height: 1.4; }
         
         .btn-path { 
@@ -66,7 +41,6 @@
         }
         .btn-path span { display: block; font-size: 0.6rem; font-weight: 300; color: #888; margin-top: 2px; }
         .btn-path:hover { background: var(--pink-bright); color: white; }
-
         .valentine-card { border: 1.5px dashed var(--pink-bright); background: #fffafa; }
         .fade-in { animation: fadeIn 0.8s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -94,29 +68,17 @@
             <p><strong>This is not a confession page.</strong></p>
             <p>I enjoy talking to you and honestly I want to know you more and get closer in real life too.</p>
             <p style="font-weight: 600; color: var(--pink-bright); font-size: 0.8rem; margin-top: 15px;">CHOOSE YOUR STORY PATH:</p>
-            
-            <a href="https://api.whatsapp.com/send?phone=6285947341684&text=I'll%20take%20the%20Slow%20Connection%20Mode!%20No%20rush,%20let's%20just%20keep%20talking." class="btn-path">
-                SLOW CONNECTION MODE
-                <span>(no rush, just getting to know each other more)</span>
-            </a>
-            
-            <a href="https://api.whatsapp.com/send?phone=6285947341684&text=Let's%20see%20where%20this%20goes!%20I'm%20curious%20too,%20no%20script,%20just%20vibes." class="btn-path">
-                LET'S SEE WHERE THIS GOES
-                <span>(no script, just vibes, curiosity encouraged)</span>
-            </a>
+            <a href="https://api.whatsapp.com/send?phone=6285947341684&text=I'll%20take%20the%20Slow%20Connection%20Mode!%20No%20rush,%20let's%20just%20keep%20talking." class="btn-path">SLOW CONNECTION MODE<span>(no rush, just getting to know each other more)</span></a>
+            <a href="https://api.whatsapp.com/send?phone=6285947341684&text=Let's%20see%20where%20this%20goes!%20I'm%20curious%20too,%20no%20script,%20just%20vibes." class="btn-path">LET'S SEE WHERE THIS GOES<span>(no script, just vibes, curiosity encouraged)</span></a>
         </div>
 
         <div class="card fade-in valentine-card" style="animation-delay: 0.8s;">
             <p style="font-weight: 600; margin: 0; color: var(--pink-bright);">Happy Valentine! ❤️</p>
-            <p style="font-size: 0.75rem; color: #888; margin-top: 8px;">
-                Just a small gem of a message…<br>
-                No big confessions today,<br>
-                Just a reminder that talking to you has been unexpectedly fun.
-            </p>
+            <p style="font-size: 0.75rem; color: #888; margin-top: 8px;">Just a small gem of a message…<br>No big confessions today,<br>Just a reminder that talking to you has been unexpectedly fun.</p>
         </div>
     </div>
 
-    <audio id="mySong" src="Bruno Mars - Treasure Official Music Video.mp3" preload="auto"></audio>
+    <audio id="mySong" src="treasure.mp3" preload="auto" loop></audio>
 
     <script>
         let count = 0;
@@ -127,27 +89,24 @@
         const song = document.getElementById('mySong');
 
         function handleRun() {
-            // Audio WAJIB mulai dari interaksi klik/tap pertama di HP
             if (!songStarted) {
                 song.currentTime = 1.5;
-                song.play().catch(e => console.log("Audio play failed", e));
                 song.volume = 0.5;
-                songStarted = true;
+                let playPromise = song.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => { songStarted = true; }).catch(error => { console.log("Playback failed"); });
+                }
             }
 
             count++;
-            
-            // Tombol lari
             const maxX = window.innerWidth - btn.offsetWidth - 30;
             const maxY = window.innerHeight - btn.offsetHeight - 30;
             const randomX = Math.max(15, Math.floor(Math.random() * maxX));
             const randomY = Math.max(15, Math.floor(Math.random() * maxY));
-
             btn.style.left = randomX + 'px';
             btn.style.top = randomY + 'px';
-            btn.style.transform = 'none'; // Menghilangkan centering setelah lari pertama
+            btn.style.transform = 'none';
 
-            // Diamond muncul tepat setelah 10x klik
             if (count >= 10) {
                 hint.style.display = 'block';
                 gem.style.display = 'block';
