@@ -13,27 +13,22 @@
             margin: 0; display: flex; justify-content: center; align-items: center; 
             min-height: 100vh; overflow: hidden; touch-action: none;
         }
-        
         #run-btn {
             position: absolute; background: var(--pink-bright); color: white; border: none;
             padding: 12px 35px; border-radius: 50px; font-weight: 600; cursor: pointer;
             z-index: 100; transition: 0.1s ease-out; left: 50%; top: 50%; transform: translate(-50%, -50%);
         }
-
         #hint { display: none; color: #888; font-size: 0.7rem; position: absolute; top: 15%; text-align: center; width: 100%; padding: 0 20px; box-sizing: border-box; }
-
         #hidden-gem {
             display: none; position: absolute; bottom: 15px; left: 15px;
             cursor: pointer; font-size: 0.6rem; opacity: 0.15; z-index: 50; padding: 15px;
         }
-
         #content { display: none; width: 85%; max-width: 350px; margin: 20px auto; text-align: center; }
         .card { background: white; padding: 15px 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 12px; border: 1px solid #ffe5ec; }
         h3 { color: var(--text-dark); font-size: 0.95rem; margin-bottom: 10px; }
         ul { list-style: none; padding: 0; text-align: center; margin: 0; }
         li { margin: 5px 0; color: #666; font-size: 0.85rem; }
         p { font-size: 0.85rem; color: #555; line-height: 1.4; }
-        
         .btn-path { 
             background: white; color: var(--pink-bright); border: 1.5px solid var(--pink-bright); 
             display: block; padding: 10px; margin: 8px 0; border-radius: 10px; 
@@ -47,11 +42,9 @@
     </style>
 </head>
 <body>
-
     <button id="run-btn" onclick="handleRun()">ENTER</button>
     <div id="hint">Capek ya? Coba cari 💎 yang sangat kecil...</div>
     <div id="hidden-gem" onclick="showContent()">💎</div>
-
     <div id="content">
         <div class="card fade-in">
             <h3>What I learned about you so far:</h3>
@@ -63,7 +56,6 @@
                 <li>Superhero vibes</li>
             </ul>
         </div>
-
         <div class="card fade-in" style="animation-delay: 0.4s;">
             <p><strong>This is not a confession page.</strong></p>
             <p>I enjoy talking to you and honestly I want to know you more and get closer in real life too.</p>
@@ -71,52 +63,35 @@
             <a href="https://api.whatsapp.com/send?phone=6285947341684&text=I'll%20take%20the%20Slow%20Connection%20Mode!%20No%20rush,%20let's%20just%20keep%20talking." class="btn-path">SLOW CONNECTION MODE<span>(no rush, just getting to know each other more)</span></a>
             <a href="https://api.whatsapp.com/send?phone=6285947341684&text=Let's%20see%20where%20this%20goes!%20I'm%20curious%20too,%20no%20script,%20just%20vibes." class="btn-path">LET'S SEE WHERE THIS GOES<span>(no script, just vibes, curiosity encouraged)</span></a>
         </div>
-
         <div class="card fade-in valentine-card" style="animation-delay: 0.8s;">
             <p style="font-weight: 600; margin: 0; color: var(--pink-bright);">Happy Valentine! ❤️</p>
             <p style="font-size: 0.75rem; color: #888; margin-top: 8px;">Just a small gem of a message…<br>No big confessions today,<br>Just a reminder that talking to you has been unexpectedly fun.</p>
         </div>
     </div>
-
-    <audio id="mySong" src="treasure.mp3" preload="auto" loop></audio>
-
+    <audio id="mySong" src="https://files.catbox.moe/v6p0y9.mp3" preload="auto" loop></audio>
     <script>
-        let count = 0;
-        let songStarted = false;
+        let count = 0; let songStarted = false;
         const btn = document.getElementById('run-btn');
         const gem = document.getElementById('hidden-gem');
         const hint = document.getElementById('hint');
         const song = document.getElementById('mySong');
-
         function handleRun() {
             if (!songStarted) {
-                song.currentTime = 1.5;
-                song.volume = 0.5;
+                song.currentTime = 2; song.volume = 0.6;
                 let playPromise = song.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => { songStarted = true; }).catch(error => { console.log("Playback failed"); });
-                }
+                if (playPromise !== undefined) { songStarted = true; }
             }
-
             count++;
             const maxX = window.innerWidth - btn.offsetWidth - 30;
             const maxY = window.innerHeight - btn.offsetHeight - 30;
             const randomX = Math.max(15, Math.floor(Math.random() * maxX));
             const randomY = Math.max(15, Math.floor(Math.random() * maxY));
-            btn.style.left = randomX + 'px';
-            btn.style.top = randomY + 'px';
+            btn.style.left = randomX + 'px'; btn.style.top = randomY + 'px';
             btn.style.transform = 'none';
-
-            if (count >= 10) {
-                hint.style.display = 'block';
-                gem.style.display = 'block';
-            }
+            if (count >= 10) { hint.style.display = 'block'; gem.style.display = 'block'; }
         }
-
         function showContent() {
-            btn.style.display = 'none';
-            hint.style.display = 'none';
-            gem.style.display = 'none';
+            btn.style.display = 'none'; hint.style.display = 'none'; gem.style.display = 'none';
             document.getElementById('content').style.display = 'block';
         }
     </script>
