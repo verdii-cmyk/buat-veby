@@ -56,16 +56,26 @@
             color: var(--pink-bright);
             border: 1.5px solid var(--pink-bright);
             display: block;
-            padding: 8px;
-            margin: 8px 0;
+            padding: 10px;
+            margin: 10px 0;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: 0.3s;
+            line-height: 1.2;
+        }
+
+        .btn-path span {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 300;
+            color: #888;
+            margin-top: 2px;
         }
 
         .btn-path:hover { background: var(--pink-bright); color: white; }
+        .btn-path:hover span { color: white; }
 
         .valentine-card {
             border: 1.5px dashed var(--pink-bright);
@@ -95,11 +105,11 @@
 
     <div id="content">
         <div class="card fade-in">
-            <h3>What I learned so far:</h3>
+            <h3>What I learned about you so far:</h3>
             <ul>
-                <li>Cookie Master (impressive)</li>
+                <li>Cookie Master (seriously impressive)</li>
                 <li>Kind and warm person</li>
-                <li>Pretty & positive energy</li>
+                <li>Pretty and has positive energy</li>
                 <li>Cartoon mood booster</li>
                 <li>Superhero vibes</li>
             </ul>
@@ -107,15 +117,29 @@
 
         <div class="card fade-in" style="animation-delay: 0.4s;">
             <p><strong>This is not a confession page.</strong></p>
-            <p>I enjoy talking to you and I want to get closer in real life too. So, I made this to ask you directly:</p>
-            <p style="font-weight: 600; color: var(--pink-bright); font-size: 0.8rem;">CHOOSE YOUR PATH:</p>
-            <a href="https://wa.me/6281234567890?text=I'd%20love%20to%20get%20closer%20too!" class="btn-path">Let's get closer</a>
-            <a href="https://wa.me/6281234567890?text=I'm%20happy%20being%20friends%20for%20now." class="btn-path">Stay as friends</a>
+            <p>I enjoy talking to you and honestly I want to know you more and get closer in real life too.</p>
+            <p>So instead of guessing, I made this weird little website to ask you directly.</p>
+            
+            <p style="font-weight: 600; color: var(--pink-bright); font-size: 0.8rem; margin-top: 15px;">CHOOSE YOUR STORY PATH:</p>
+            
+            <a href="https://wa.me/6285947341684?text=I'll%20take%20the%20Slow%20Connection%20Mode!%20No%20rush,%20let's%20just%20keep%20talking%20and%20get%20to%20know%20each%20other%20more." class="btn-path">
+                SLOW CONNECTION MODE
+                <span>(no rush, just getting to know each other more)</span>
+            </a>
+            
+            <a href="https://wa.me/6285947341684?text=Let's%20see%20where%20this%20goes!%20I'm%20curious%20too,%20no%20script,%20just%20vibes." class="btn-path">
+                LET'S SEE WHERE THIS GOES
+                <span>(no script, just vibes, curiosity encouraged)</span>
+            </a>
         </div>
 
         <div class="card fade-in valentine-card" style="animation-delay: 0.8s;">
             <p style="font-weight: 600; margin: 0; color: var(--pink-bright);">Happy Valentine! ❤️</p>
-            <p style="font-size: 0.75rem; color: #888;">Talking to you has been unexpectedly fun.</p>
+            <p style="font-size: 0.75rem; color: #888; margin-top: 8px;">
+                Just a small gem of a message…<br>
+                No big confessions today,<br>
+                Just a reminder that talking to you has been unexpectedly fun.
+            </p>
         </div>
     </div>
 
