@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Veby</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fredoka+One&display=swap" rel="stylesheet">
+    <title>For Vebii</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pink-soft: #fff5f7;
+            --pink-soft: #FFF5F7;
             --pink-bright: #ff4d6d;
             --pink-hover: #ff758f;
             --text-dark: #4a4a4a;
@@ -27,164 +27,141 @@
         }
 
         .container {
-            background: white;
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.15);
             text-align: center;
-            max-width: 400px;
-            width: 90%;
-            border: 2px solid #ffccd5;
-            transition: all 0.5s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        h1 {
-            font-family: 'Fredoka One', cursive;
-            color: var(--pink-bright);
-            font-size: 28px;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        p { color: var(--text-dark); line-height: 1.6; font-size: 15px; }
-
-        .stat-box {
-            background: #fffafa;
-            margin: 10px 0;
-            padding: 12px;
-            border-radius: 15px;
-            border: 1px dashed #ff8fa3;
-            font-weight: 600;
-            color: #555;
-            transition: 0.3s;
-        }
-
-        /* Unique Hover Effect for Superhero */
-        .hero-box { position: relative; cursor: help; }
-        .hero-box:hover::after {
-            content: "Even superheroes need a break sometimes, it's okay to not be okay. ✨";
-            position: absolute;
-            bottom: 110%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #333;
-            color: white;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 11px;
-            width: 220px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             z-index: 10;
         }
 
-        button {
+        .btn-enter {
             background: var(--pink-bright);
             color: white;
             border: none;
-            padding: 15px 35px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
             border-radius: 50px;
-            font-family: 'Fredoka One', cursive;
-            font-size: 16px;
             cursor: pointer;
-            transition: 0.4s;
-            margin-top: 20px;
-            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+            transition: 0.3s;
+            font-weight: 600;
         }
 
-        button:hover {
+        .btn-enter:hover {
+            transform: scale(1.05);
             background: var(--pink-hover);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.4);
         }
 
-        .lyrics-bar {
-            position: fixed;
-            bottom: 40px;
-            color: var(--pink-bright);
-            font-style: italic;
-            font-weight: 300;
-            opacity: 0.8;
+        #content {
+            display: none;
+            width: 90%;
+            max-width: 400px;
             text-align: center;
-            width: 100%;
-            font-size: 14px;
         }
 
-        /* Animations */
-        .fade-in { animation: fadeIn 0.8s ease-in forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 1px solid #ffe5ec;
+        }
 
-        .option-card {
-            background: #fff;
-            border: 2px solid #ffccd5;
-            padding: 15px;
+        h2 { color: var(--pink-bright); margin-bottom: 10px; }
+        h3 { color: var(--text-dark); font-size: 1.1rem; margin-bottom: 15px; }
+        
+        ul { list-style: none; padding: 0; text-align: left; display: inline-block; }
+        li { margin: 10px 0; color: #666; font-size: 0.95rem; position: relative; padding-left: 20px; }
+        li::before { content: '✨'; position: absolute; left: 0; }
+
+        .btn-path {
+            background: white;
+            color: var(--pink-bright);
+            border: 2px solid var(--pink-bright);
+            display: block;
+            width: 100%;
+            padding: 12px;
             margin: 10px 0;
-            border-radius: 15px;
-            cursor: pointer;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
             transition: 0.3s;
         }
-        .option-card:hover { background: #fff0f3; border-color: var(--pink-bright); }
+
+        .btn-path:hover {
+            background: var(--pink-bright);
+            color: white;
+        }
+
+        .fade-in { animation: fadeIn 1.5s forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <div class="container" id="content">
-        <h1 class="fade-in">PLAYER DETECTED.</h1>
-        <p class="fade-in">loading interaction history...</p>
-        <button class="fade-in" onclick="initGame()">ENTER</button>
+    <div class="container">
+        <button class="btn-enter" onclick="initGame()">ENTER</button>
+        <p style="margin-top: 15px; color: #888; font-size: 0.8rem;">Click to unlock</p>
     </div>
 
-    <div id="lyrics" class="lyrics-bar"></div>
+    <div id="content">
+        <div class="card fade-in">
+            <h3>What I learned about you so far:</h3>
+            <ul>
+                <li>Cookie Master (seriously impressive)</li>
+                <li>Kind and warm person</li>
+                <li>Pretty and has positive energy</li>
+                <li>Cartoon mood booster</li>
+                <li>Superhero vibes</li>
+            </ul>
+        </div>
 
-    <audio id="mySong" src="Bruno Mars - Treasure Official Music Video.mp3"></audio>
+        <div class="card fade-in" style="animation-delay: 1s;">
+            <p><strong>This is not a confession page.</strong></p>
+            <p style="font-size: 0.9rem; color: #666;">
+                I just realized I enjoy talking to you, and honestly I want to know you more and get closer in real life too.<br><br>
+                So instead of guessing, I made this weird little website to ask you directly.
+            </p>
+            <p style="font-weight: 600; color: var(--pink-bright); margin-top: 15px;">CHOOSE YOUR PATH:</p>
+            
+            <a href="https://wa.me/6285947341684?text=I'd%20love%20to%20get%20closer%20too!%20Let's%20make%20it%20happen." class="btn-path">Let's get closer</a>
+            <a href="https://wa.me/6285947341684?text=I'm%20happy%20being%20friends%20for%20now." class="btn-path">Stay as friends</a>
+        </div>
+
+        <div class="card fade-in" style="animation-delay: 2s; border: 2px dashed var(--pink-bright);">
+            <p style="font-size: 1.1rem; font-weight: 600; margin: 0;">Happy Valentine! ❤️</p>
+            <p style="font-size: 0.85rem; color: #777; margin-top: 10px; line-height: 1.6;">
+                Just a small gem of a message…<br>
+                No big confessions today,<br>
+                Just a reminder that talking to you has been unexpectedly fun.
+            </p>
+        </div>
+    </div>
+
+    <audio id="mySong" src="Bruno Mars - Treasure Official Music Video.mp3" preload="auto"></audio>
 
     <script>
         const song = document.getElementById('mySong');
         const content = document.getElementById('content');
-        const lyrics = document.getElementById('lyrics');
 
         function initGame() {
+            // Start lagu dari detik 1.5 biar lirik kasarnya lewat
+            song.currentTime = 1.5;
             song.play();
-            song.volume = 0.5; // Suara nyaman di telinga
-            
-            content.classList.add('fade-in');
-            content.innerHTML = `
-                <h1 style="font-size: 20px;">what i learned about you:</h1>
-                <div class="stat-box">🍪 Cookie Master (Impressive!)</div>
-                <div class="stat-box">✨ Pretty & Positive Energy</div>
-                <div class="stat-box hero-box">🦸‍♀️ Superhero Vibes</div>
-                <p style="margin-top: 20px; font-weight: 600;">choose your story path:</p>
-                
-                <div class="option-card" onclick="finalPage('Slow Connection')">
-                    <strong>SLOW CONNECTION MODE</strong><br>
-                    <small>No rush, let's just talk more.</small>
-                </div>
-                
-                <div class="option-card" onclick="finalPage('Vibes')">
-                    <strong>LET'S SEE WHERE THIS GOES</strong><br>
-                    <small>No script, just vibes.</small>
-                </div>
-            `;
+            song.volume = 0.5;
 
-            // Lirik sync sederhana
-            setTimeout(() => { lyrics.innerText = "Gimme your attention, baby..."; }, 1000);
-            setTimeout(() => { lyrics.innerText = "Treasure, that is what you are..."; }, 5000);
-            setTimeout(() => { lyrics.innerText = "Honey, you're my golden star!"; }, 9000);
-        }
+            // Efek fade out lagu setelah 45 detik biar gak kepanjangan
+            setTimeout(() => {
+                let fadeOut = setInterval(() => {
+                    if (song.volume > 0.05) {
+                        song.volume -= 0.05;
+                    } else {
+                        song.pause();
+                        clearInterval(fadeOut);
+                    }
+                }, 200);
+            }, 45000);
 
-        function finalPage(choice) {
-            content.innerHTML = `
-                <h1>Happy Valentine! ❤️</h1>
-                <p>No big confessions today, just a reminder that talking to you has been unexpectedly fun.</p>
-                <p>Path chosen: <strong>${choice}</strong></p>
-                <button onclick="sendWA()">Send me a message</button>
-            `;
-        }
-
-        function sendWA() {
-            const message = encodeURIComponent("Haii! Gue udah liat websitenya... Lucu banget! WKWK");
-            window.open(`https://wa.me/6285947341684?text=${message}`, '_blank');
+            document.querySelector('.container').style.display = 'none';
+            content.style.display = 'block';
         }
     </script>
 </body>
