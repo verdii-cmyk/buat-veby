@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For Vebii</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -16,7 +16,7 @@
             align-items: center; 
             min-height: 100vh; 
             overflow: hidden;
-            touch-action: manipulation;
+            touch-action: none; /* Biar HP nggak scroll pas ngejar tombol */
         }
         
         #run-btn {
@@ -30,44 +30,39 @@
             cursor: pointer;
             z-index: 100;
             transition: 0.1s ease-out;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
 
         #hint { display: none; color: #888; font-size: 0.7rem; position: absolute; top: 15%; text-align: center; width: 100%; padding: 0 20px; box-sizing: border-box; }
 
-        /* Hidden Gem - Dibuat super kecil dan hampir transparan */
         #hidden-gem {
             display: none;
             position: absolute;
-            bottom: 15px;
+            bottom: 10px;
             left: 10px;
             cursor: pointer;
-            font-size: 0.7rem; /* Kecil banget! */
-            opacity: 0.2; 
-            transition: 0.3s;
+            font-size: 0.6rem; /* Lebih kecil lagi */
+            opacity: 0.15; /* Hampir ilang */
             z-index: 50;
+            padding: 10px;
         }
 
         #content { display: none; width: 85%; max-width: 350px; margin: 20px auto; text-align: center; }
         .card { background: white; padding: 15px 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 12px; border: 1px solid #ffe5ec; }
         h3 { color: var(--text-dark); font-size: 0.95rem; margin-bottom: 10px; }
         
-        /* List tanpa emot */
+        /* List bersih tanpa bullet/emot */
         ul { list-style: none; padding: 0; text-align: center; margin: 0; }
-        li { margin: 5px 0; color: #666; font-size: 0.85rem; }
+        li { margin: 5px 0; color: #666; font-size: 0.85rem; padding: 0; }
 
         p { font-size: 0.85rem; color: #555; line-height: 1.4; }
         
         .btn-path { 
-            background: white; 
-            color: var(--pink-bright); 
-            border: 1.5px solid var(--pink-bright); 
-            display: block; 
-            padding: 10px; 
-            margin: 8px 0; 
-            border-radius: 10px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 0.8rem;
+            background: white; color: var(--pink-bright); border: 1.5px solid var(--pink-bright); 
+            display: block; padding: 10px; margin: 8px 0; border-radius: 10px; 
+            text-decoration: none; font-weight: 600; font-size: 0.8rem;
         }
         .btn-path span { display: block; font-size: 0.6rem; font-weight: 300; color: #888; margin-top: 2px; }
         .btn-path:hover { background: var(--pink-bright); color: white; }
@@ -79,8 +74,8 @@
 </head>
 <body>
 
-    <button id="run-btn" onmouseover="runAway()" onclick="runAway()">ENTER</button>
-    <div id="hint">Nyerah? Cari 💎 kecil di layar!</div>
+    <button id="run-btn" onclick="handleRun()">ENTER</button>
+    <div id="hint">Capek ya? Coba cari 💎 yang sangat kecil...</div>
     <div id="hidden-gem" onclick="showContent()">💎</div>
 
     <div id="content">
@@ -131,26 +126,28 @@
         const hint = document.getElementById('hint');
         const song = document.getElementById('mySong');
 
-        function runAway() {
-            // Lagu mulai pas sentuhan pertama
+        function handleRun() {
+            // Audio WAJIB mulai dari interaksi klik/tap pertama di HP
             if (!songStarted) {
                 song.currentTime = 1.5;
-                song.play();
+                song.play().catch(e => console.log("Audio play failed", e));
                 song.volume = 0.5;
                 songStarted = true;
             }
 
             count++;
-            const maxX = window.innerWidth - btn.offsetWidth - 20;
-            const maxY = window.innerHeight - btn.offsetHeight - 20;
             
-            const randomX = Math.max(10, Math.floor(Math.random() * maxX));
-            const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+            // Tombol lari
+            const maxX = window.innerWidth - btn.offsetWidth - 30;
+            const maxY = window.innerHeight - btn.offsetHeight - 30;
+            const randomX = Math.max(15, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(15, Math.floor(Math.random() * maxY));
 
             btn.style.left = randomX + 'px';
             btn.style.top = randomY + 'px';
+            btn.style.transform = 'none'; // Menghilangkan centering setelah lari pertama
 
-            // Muncul diamond setelah 10x
+            // Diamond muncul tepat setelah 10x klik
             if (count >= 10) {
                 hint.style.display = 'block';
                 gem.style.display = 'block';
