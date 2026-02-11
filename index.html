@@ -6,102 +6,79 @@
     <title>For Vebii</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --pink-soft: #FFF5F7;
-            --pink-bright: #ff4d6d;
-            --text-dark: #4a4a4a;
+        :root { --pink-soft: #FFF5F7; --pink-bright: #ff4d6d; --text-dark: #4a4a4a; }
+        body { 
+            background: var(--pink-soft); 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            overflow: hidden;
+            touch-action: manipulation; /* Biar enak di HP */
         }
-
-        body {
-            background: var(--pink-soft);
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-image: radial-gradient(#ffccd5 0.5px, transparent 0.5px);
-            background-size: 15px 15px;
-        }
-
-        .container { text-align: center; }
-
-        #content {
-            display: none;
-            width: 85%;
-            max-width: 350px;
-            margin: 20px auto;
-        }
-
-        .card {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            margin-bottom: 12px;
-            border: 1px solid #ffe5ec;
-            text-align: center;
-        }
-
-        h3 { color: var(--text-dark); font-size: 0.95rem; margin: 0 0 10px 0; }
         
-        ul { list-style: none; padding: 0; text-align: left; display: inline-block; margin: 0; }
-        li { margin: 5px 0; color: #666; font-size: 0.85rem; padding-left: 15px; position: relative; }
-        li::before { content: '✨'; position: absolute; left: 0; font-size: 0.7rem; }
-
-        p { font-size: 0.85rem; color: #555; margin: 8px 0; line-height: 1.4; }
-
-        .btn-path {
-            background: white;
-            color: var(--pink-bright);
-            border: 1.5px solid var(--pink-bright);
-            display: block;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: 0.3s;
-            line-height: 1.2;
-        }
-
-        .btn-path span {
-            display: block;
-            font-size: 0.65rem;
-            font-weight: 300;
-            color: #888;
-            margin-top: 2px;
-        }
-
-        .btn-path:hover { background: var(--pink-bright); color: white; }
-        .btn-path:hover span { color: white; }
-
-        .valentine-card {
-            border: 1.5px dashed var(--pink-bright);
-            background: #fffafa;
-        }
-
-        .fade-in { animation: fadeIn 0.8s forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .btn-enter {
+        #run-btn {
+            position: absolute;
             background: var(--pink-bright);
             color: white;
             border: none;
             padding: 12px 35px;
             border-radius: 50px;
             font-weight: 600;
-            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.2);
             cursor: pointer;
+            z-index: 100;
+            transition: 0.1s ease-out;
         }
+
+        #hint { display: none; color: #888; font-size: 0.8rem; position: absolute; top: 60%; text-align: center; width: 100%; padding: 0 20px; box-sizing: border-box; }
+
+        #hidden-gem {
+            display: none;
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            opacity: 0.3; 
+            transition: 0.5s;
+        }
+
+        #content { display: none; width: 85%; max-width: 350px; margin: 20px auto; text-align: center; }
+        .card { background: white; padding: 15px 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 12px; border: 1px solid #ffe5ec; }
+        h3 { color: var(--text-dark); font-size: 0.95rem; margin-bottom: 10px; }
+        ul { list-style: none; padding: 0; text-align: left; display: inline-block; margin: 0; }
+        li { margin: 5px 0; color: #666; font-size: 0.85rem; padding-left: 15px; position: relative; }
+        li::before { content: '✨'; position: absolute; left: 0; font-size: 0.7rem; }
+        p { font-size: 0.85rem; color: #555; line-height: 1.4; }
+        
+        .btn-path { 
+            background: white; 
+            color: var(--pink-bright); 
+            border: 1.5px solid var(--pink-bright); 
+            display: block; 
+            padding: 10px; 
+            margin: 8px 0; 
+            border-radius: 10px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.8rem;
+        }
+        .btn-path span { display: block; font-size: 0.65rem; font-weight: 300; color: #888; margin-top: 2px; }
+        .btn-path:hover { background: var(--pink-bright); color: white; }
+        .btn-path:hover span { color: #fff5f7; }
+
+        .valentine-card { border: 1.5px dashed var(--pink-bright); background: #fffafa; }
+        .fade-in { animation: fadeIn 0.8s forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <div class="container" id="start-screen">
-        <button class="btn-enter" onclick="initGame()">ENTER</button>
-    </div>
+    <button id="run-btn" onmouseover="runAway()" onclick="runAway()">ENTER</button>
+    <div id="hint">Nyerah ya? Coba cari 💎 yang sembunyi!</div>
+    <div id="hidden-gem" onclick="initGame()">💎</div>
 
     <div id="content">
         <div class="card fade-in">
@@ -118,16 +95,14 @@
         <div class="card fade-in" style="animation-delay: 0.4s;">
             <p><strong>This is not a confession page.</strong></p>
             <p>I enjoy talking to you and honestly I want to know you more and get closer in real life too.</p>
-            <p>So instead of guessing, I made this weird little website to ask you directly.</p>
-            
             <p style="font-weight: 600; color: var(--pink-bright); font-size: 0.8rem; margin-top: 15px;">CHOOSE YOUR STORY PATH:</p>
             
-            <a href="https://wa.me/6285947341684?text=I'll%20take%20the%20Slow%20Connection%20Mode!%20No%20rush,%20let's%20just%20keep%20talking%20and%20get%20to%20know%20each%20other%20more." class="btn-path">
+            <a href="https://api.whatsapp.com/send?phone=6285947341684&text=I'll%20take%20the%20Slow%20Connection%20Mode!%20No%20rush,%20let's%20just%20keep%20talking%20and%20get%20to%20know%20each%20other%20more." class="btn-path">
                 SLOW CONNECTION MODE
                 <span>(no rush, just getting to know each other more)</span>
             </a>
             
-            <a href="https://wa.me/6285947341684?text=Let's%20see%20where%20this%20goes!%20I'm%20curious%20too,%20no%20script,%20just%20vibes." class="btn-path">
+            <a href="https://api.whatsapp.com/send?phone=6285947341684&text=Let's%20see%20where%20this%20goes!%20I'm%20curious%20too,%20no%20script,%20just%20vibes." class="btn-path">
                 LET'S SEE WHERE THIS GOES
                 <span>(no script, just vibes, curiosity encouraged)</span>
             </a>
@@ -146,12 +121,38 @@
     <audio id="mySong" src="Bruno Mars - Treasure Official Music Video.mp3" preload="auto"></audio>
 
     <script>
+        let count = 0;
+        const btn = document.getElementById('run-btn');
+        const gem = document.getElementById('hidden-gem');
+        const hint = document.getElementById('hint');
+
+        function runAway() {
+            count++;
+            // Hitung area aman agar tombol tidak keluar layar
+            const maxX = window.innerWidth - btn.offsetWidth - 20;
+            const maxY = window.innerHeight - btn.offsetHeight - 20;
+            
+            const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+
+            if (count >= 5) {
+                hint.style.display = 'block';
+                gem.style.display = 'block';
+            }
+        }
+
         function initGame() {
             const song = document.getElementById('mySong');
             song.currentTime = 1.5;
             song.play();
             song.volume = 0.5;
-            document.getElementById('start-screen').style.display = 'none';
+
+            btn.style.display = 'none';
+            hint.style.display = 'none';
+            gem.style.display = 'none';
             document.getElementById('content').style.display = 'block';
         }
     </script>
